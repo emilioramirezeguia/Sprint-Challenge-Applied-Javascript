@@ -56,10 +56,10 @@ function createArticle(articleObject) {
   const authorNameSpan = document.createElement("span");
 
   // Add corresponding classes to each element
-  articleDiv.classList.add(".card");
-  headlineDiv.classList.add(".headline");
-  authorDiv.classList.add(".author");
-  authorImageDiv.classList.add(".img-container");
+  articleDiv.classList.add("card");
+  headlineDiv.classList.add("headline");
+  authorDiv.classList.add("author");
+  authorImageDiv.classList.add("img-container");
 
   // Nest HTML elements appropriately
   articleDiv.appendChild(headlineDiv);
