@@ -19,10 +19,22 @@
 //
 // Use your function to create a card for each of the articles and add the card to the DOM.
 
+// Create the entry point to attach articles
+const articles = document.querySelector(".cards-container");
+
+// Get info for API and create every article for each topic
 axios
   .get("https://lambda-times-backend.herokuapp.com/articles")
   .then(function (response) {
-    console.log(response);
+    const articlesObject = response.data.articles;
+    const articleTopicsArray = Object.keys(articlesObject);
+    articleTopicsArray.forEach((articleTopic) => {
+      const topicArticles = articlesObject[articleTopic];
+      topicArticles.forEach((article) => {
+        const newArticle = createArticle(article);
+        articles.appendChild(newArticle);
+      });
+    });
   })
   .catch(function (error) {
     console.log("There's an error somewhere: ", error);
@@ -65,14 +77,8 @@ function createArticle(articleObject) {
 }
 
 // Test the component is working
-const testArticle = {
-  headline: "Emilio's headline",
-  authorName: "Emilio the Author",
-  authorPhoto: "https://picsum.photos/200",
-};
-
-// Create the entry point to attach articles
-const articles = document.querySelector(".cards-container");
-const newArticle = createArticle(testArticle);
-console.log(newArticle);
-articles.appendChild(newArticle);
+// const testArticle = {
+//   headline: "Emilio's headline",
+//   authorName: "Emilio the Author",
+//   authorPhoto: "https://picsum.photos/200",
+// };
